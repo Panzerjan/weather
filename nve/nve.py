@@ -1,8 +1,11 @@
 import requests
 import json
 import pandas as pd
-
+import sys
 from datetime import datetime
+
+sys.path.append( './functions/' )
+from config import files
 
 nve_sisteuke = "HentOffentligDataSisteUke"
 omraade = "HentOmråder"
@@ -27,7 +30,7 @@ class nve_api():
 
 
 data = nve_api().get_weather(nve_sisteuke)
-file = nve_api().get_filename(nve_sisteuke)
+file = files().get_filename(nve_sisteuke, "json")
 
 with open(f'./nve/file/{file}', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False, indent=4)
