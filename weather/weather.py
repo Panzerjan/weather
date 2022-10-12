@@ -1,10 +1,7 @@
 
-import csv
 import configparser
 from tkinter import E
 import requests
-import os
-from pandas import json_normalize
 import pandas as pd
 from datetime import datetime
 import sys

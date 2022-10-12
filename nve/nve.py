@@ -1,14 +1,18 @@
 import requests
-import json
 import pandas as pd
 import sys
-from datetime import datetime
+import shutil
+import json
 
 sys.path.append( './functions/' )
-from config import files
+from config import files , lake
 
+
+# set variables
 nve_sisteuke = "HentOffentligDataSisteUke"
 omraade = "HentOmråder"
+his_path = './nve/his_files'
+new_path = './nve/file/'
 
 class nve_api():
 
@@ -22,16 +26,22 @@ class nve_api():
             print(f"[!] Exception caught: {e}")
         return r.json()
 
-    def get_filename(self, file_name):
-            now = datetime.now()
-            dato = now.strftime("%m-%d-%Y")
-            file = file_name
-            return f"{file}_{dato}.json"
 
 
 data = nve_api().get_weather(nve_sisteuke)
-file = files().get_filename(nve_sisteuke, "json")
+file = files().set_filename(nve_sisteuke, "json")
 
-with open(f'./nve/file/{file}', 'w', encoding='utf-8') as f:
+
+
+with open(f'{new_path}{file}', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False, indent=4)
 
+# Connect to lake
+lake.initialize_storage_account('janistgac', lake.storage_account_key())
+
+# Upload file to lake
+lake.upload_file(f'{file}', 'nve',
+                 f"{new_path}{file}")
+
+# move file to historical folder
+files.move_file(new_path, his_path, file)

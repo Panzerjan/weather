@@ -1,6 +1,3 @@
-import os
-import uuid
-import sys
 from azure.storage.filedatalake import DataLakeServiceClient
 import configparser
 from datetime import datetime
