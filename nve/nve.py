@@ -17,7 +17,7 @@ new_path = './nve/file/'
 class nve_api():
 
 
-    def get_weather(self, api_req):
+    def get_nve(self, api_req):
         try:
             url = f"https://biapi.nve.no/magasinstatistikk/api/Magasinstatistikk/{api_req}"
             r = requests.get(url)
@@ -27,11 +27,8 @@ class nve_api():
         return r.json()
 
 
-
-data = nve_api().get_weather(nve_sisteuke)
+data = nve_api().get_nve(nve_sisteuke)
 file = files().set_filename(nve_sisteuke, "json")
-
-
 
 with open(f'{new_path}{file}', 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False, indent=4)
@@ -39,9 +36,11 @@ with open(f'{new_path}{file}', 'w', encoding='utf-8') as f:
 # Connect to lake
 lake.initialize_storage_account('janistgac', lake.storage_account_key())
 
+
+
 # Upload file to lake
 lake.upload_file(f'{file}', 'nve',
                  f"{new_path}{file}")
 
-# move file to historical folder
+#move file to historical folder
 files.move_file(new_path, his_path, file)

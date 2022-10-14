@@ -23,7 +23,8 @@ class files():
 
 class lake():
 
-
+    def __init__(self, path):
+        self.path = path
 
 
     def storage_account_key():
@@ -49,7 +50,7 @@ class lake():
             file_system_client = service_client.get_file_system_client(
                 file_system="weather")
 
-            paths = file_system_client.get_paths(path="nve")
+            paths = file_system_client.get_paths(self.path)
 
             for path in paths:
                 print(path.name + '\n')

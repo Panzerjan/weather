@@ -74,3 +74,16 @@ df.to_csv(f'./weather/files/{test.get_filename()}', mode='a', header=False)
 #     writer.writeheader()
 #     writer.writerow(
 #         {'temp': weather['main']['temp'], 'wind': weather['wind']['speed'], 'air_po': quality, 'dato': date, 'name': weather['name']})
+
+sys.path.append( './functions/' )
+from config import  lake
+
+# Connect to lake
+lake.initialize_storage_account('janistgac', lake.storage_account_key())
+
+now = datetime.now()
+dato = now.strftime("%m-%d-%Y")
+file_name = f"results-{dato}.csv"
+
+lake.upload_file(f'sandnes.csv', 'OpenW',
+                 f"./weather/files/sandnes.csv")
