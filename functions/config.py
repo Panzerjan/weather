@@ -1,7 +1,6 @@
-from datetime import datetime
+
 from azure.storage.filedatalake import DataLakeServiceClient
 import configparser
-import os
 import shutil
 
 class files():
@@ -12,14 +11,13 @@ class files():
             file_name: str --> name of the file
             file_struc: str --> extension file etc ,json, xml, csv
         '''
-        now = datetime.now()
-        dato = now.strftime("%m-%d-%Y")
         file = file_name
-        return f"{file}_{dato}.{file_struc}"
+        return f"{file}.{file_struc}"
 
     def move_file(new_path, his_path , file):
             shutil.move(f"{new_path}{file}", his_path)
             print(f'Moved {file} from {new_path} to {his_path}')
+
 
 class lake():
 

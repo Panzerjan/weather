@@ -28,19 +28,6 @@
     {
         "dato_Id": "2022-10-09",
         "omrType": "EL",
-        "omrnr": 1,
-        "iso_aar": 2022,
-        "iso_uke": 40,
-        "fyllingsgrad": 0.7934767,
-        "kapasitet_TWh": 5.992993,
-        "fylling_TWh": 4.7553005,
-        "neste_Publiseringsdato": "2022-10-19T13:00:00",
-        "fyllingsgrad_forrige_uke": 0.76069397,
-        "endring_fyllingsgrad": 0.032782733
-    },
-    {
-        "dato_Id": "2022-10-09",
-        "omrType": "EL",
         "omrnr": 5,
         "iso_aar": 2022,
         "iso_uke": 40,
@@ -57,12 +44,25 @@
         "omrnr": 4,
         "iso_aar": 2022,
         "iso_uke": 40,
-        "fyllingsgrad": 0.8793365,
+        "fyllingsgrad": 0.87942314,
         "kapasitet_TWh": 20.820948,
-        "fylling_TWh": 18.308619,
+        "fylling_TWh": 18.310423,
         "neste_Publiseringsdato": "2022-10-19T13:00:00",
         "fyllingsgrad_forrige_uke": 0.87158364,
-        "endring_fyllingsgrad": 0.0077528358
+        "endring_fyllingsgrad": 0.007839501
+    },
+    {
+        "dato_Id": "2022-10-09",
+        "omrType": "EL",
+        "omrnr": 1,
+        "iso_aar": 2022,
+        "iso_uke": 40,
+        "fyllingsgrad": 0.79339856,
+        "kapasitet_TWh": 5.992993,
+        "fylling_TWh": 4.7548313,
+        "neste_Publiseringsdato": "2022-10-19T13:00:00",
+        "fyllingsgrad_forrige_uke": 0.76069397,
+        "endring_fyllingsgrad": 0.03270459
     },
     {
         "dato_Id": "2022-10-09",
@@ -109,11 +109,11 @@
         "omrnr": 3,
         "iso_aar": 2022,
         "iso_uke": 40,
-        "fyllingsgrad": 0.8625135,
+        "fyllingsgrad": 0.8625732,
         "kapasitet_TWh": 28.093166,
-        "fylling_TWh": 24.230734,
+        "fylling_TWh": 24.232412,
         "neste_Publiseringsdato": "2022-10-19T13:00:00",
         "fyllingsgrad_forrige_uke": 0.8532675,
-        "endring_fyllingsgrad": 0.009245992
+        "endring_fyllingsgrad": 0.009305716
     }
 ]
