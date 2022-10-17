@@ -7,7 +7,7 @@ class api():
 
     def __init__(self, url):
         self.url=url
-        self.configfile = './weather/config.ini'
+        self.configfile = './functions/config.ini'
 
     def get_api_key(self):
         config = configparser.ConfigParser()
