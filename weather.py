@@ -11,7 +11,6 @@ import pandas as pd
 # set variables
 url_weather= 'https://api.openweathermap.org/data/2.5/weather'
 url_air = 'http://api.openweathermap.org/data/2.5/air_pollution'
-nve_url = 'https://biapi.nve.no/magasinstatistikk/api/Magasinstatistikk/'
 weather_path= './weather/files/'
 
 

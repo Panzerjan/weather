@@ -15,4 +15,3 @@ class date():
         return dato
 
 
-print(date().get_date())
