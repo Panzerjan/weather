@@ -4,10 +4,12 @@ import json
 
 from functions import lake, files, date
 from api import get_api
+from functions import keyVault
+
 
 
 # set variables
-nve_url = 'https://biapi.nve.no/magasinstatistikk/api/Magasinstatistikk/'
+nve_url = keyVault.KeyVault().getSecret('urlNve')
 nve_sisteuke = "HentOffentligDataSisteUke"
 omraade = "HentOmråder"
 his_path = './nve/his_files'

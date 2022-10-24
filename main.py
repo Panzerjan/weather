@@ -1,7 +1,4 @@
+from functions import keyVault
 
 
-# def main():
-
-
-#     if __name__ == "__main__":
-#     main()
+keyVault.KeyVault.setSecret(self, 'test','12345')
