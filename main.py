@@ -1,7 +1,13 @@
+import os
+from azure.keyvault.secrets import SecretClient
+from azure.identity import DefaultAzureCredential
 
+keyVaultName = 'kvjani'
+KVUri = f"https://{keyVaultName}.vault.azure.net"
 
-# def main():
+credential = DefaultAzureCredential()
+client = SecretClient(vault_url=KVUri, credential=credential)
 
+secretName = 'urlNve'
 
-#     if __name__ == "__main__":
-#     main()
+client.set_secret(secretName)
