@@ -1,10 +1,10 @@
 #import modules
 import os
 from azure.keyvault.secrets import SecretClient
-from azure.identity import DefaultAzureCredential
+from azure.identity import  AzureCliCredential
 
 
-class KeyVault(object):
+class KeyVault():
     def __init__(self, key_vault_name=None):
         '''
         This class uses azure credentials from the system.
@@ -14,7 +14,7 @@ class KeyVault(object):
         :paran credentials: credential object containing the login credentials
         :param key_vault_name: name of the key vault
         '''
-        self.credential = DefaultAzureCredential()
+        self.credential = AzureCliCredential()
         self.keyVaultName = "kvjani"
         self.KVUri = "https://" + self.keyVaultName + ".vault.azure.net"
         self.client = SecretClient(
@@ -29,5 +29,20 @@ class KeyVault(object):
         secret = self.client.get_secret(secret_name)
         return secret.value
 
+    def setSecret(self, secret, value):
+        '''
+        This method set a secret to the key_vault. Requires a secret name and value
 
-KeyVault().getSecret("urlNve")
+        :param secret: the name of the secret
+               value: value to be inserted
+
+        eks:
+        kv = KeyVault()
+        kv.setSecret('test', '12343')
+        '''
+        set_secret = self.client.set_secret(secret, value)
+        print(f'Secret name {set_secret.name} is add to {self.keyVaultName}')
+
+
+
+
