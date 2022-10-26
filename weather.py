@@ -4,13 +4,14 @@ from importlib.metadata import files
 from functions import lake, files, date
 from api import get_api
 import pandas as pd
+from functions import keyVault
 
 
 
 
 # set variables
-url_weather= 'https://api.openweathermap.org/data/2.5/weather'
-url_air = 'http://api.openweathermap.org/data/2.5/air_pollution'
+url_weather= keyVault.KeyVault().getSecret('urlWeather')
+url_air = keyVault.KeyVault().getSecret('urlAir')
 weather_path= './weather/files/'
 
 
