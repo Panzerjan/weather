@@ -1,4 +1,6 @@
 from functions import keyVault
 
 
-keyVault.KeyVault.setSecret(self, 'test','12345')
+url = keyVault.KeyVault().getSecret('urlAir')
+
+print(url)
