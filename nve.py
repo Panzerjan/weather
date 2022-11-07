@@ -2,18 +2,16 @@
 import pandas as pd
 import json
 
-from functions import lake, files, date
-from api import get_api
-from functions import keyVault
-
-
+from common import lake, files, date
+from common.api import get_api
+from common import keyVault
 
 # set variables
 nve_url = keyVault.KeyVault().getSecret('urlNve')
 nve_sisteuke = "HentOffentligDataSisteUke"
 omraade = "HentOmråder"
-his_path = './nve/his_files'
-new_path = './nve/file/'
+his_path = './files/nve/his_files'
+new_path = './files/nve/file/'
 
 # Get Magasin statestik siste uken
 nve = get_api.api(f'{nve_url}')

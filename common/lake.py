@@ -10,7 +10,7 @@ class lake():
 
     def storage_account_key():
         config = configparser.ConfigParser()
-        config.read('./functions/config.ini')
+        config.read('./common/config.ini')
         return config['lakekey']['key']
 
 
