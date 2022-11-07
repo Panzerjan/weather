@@ -1,10 +1,10 @@
 # import modules
 
 from importlib.metadata import files
-from functions import lake, files, date
-from api import get_api
+from common import lake, files, date
+from common.api import get_api
 import pandas as pd
-from functions import keyVault
+from common import keyVault
 
 
 

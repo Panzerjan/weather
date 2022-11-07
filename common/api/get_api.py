@@ -7,7 +7,7 @@ class api():
 
     def __init__(self, url):
         self.url=url
-        self.configfile = './functions/config.ini'
+        self.configfile = './common/config.ini'
 
     def get_api_key(self):
         config = configparser.ConfigParser()

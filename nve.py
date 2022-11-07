@@ -2,11 +2,9 @@
 import pandas as pd
 import json
 
-from functions import lake, files, date
-from api import get_api
-from functions import keyVault
-
-
+from common import lake, files, date
+from common.api import get_api
+from common import keyVault
 
 # set variables
 nve_url = keyVault.KeyVault().getSecret('urlNve')
