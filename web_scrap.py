@@ -30,3 +30,4 @@ with open(r"./global_temp/file/global.txt", 'r+') as fp:
     # start writing lines except the last line
     # lines[:-1] from line 0 to the second last line
     fp.writelines(lines[:-12])
+

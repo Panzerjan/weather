@@ -12,7 +12,7 @@ from functions import keyVault
 # set variables
 url_weather= keyVault.KeyVault().getSecret('urlWeather')
 url_air = keyVault.KeyVault().getSecret('urlAir')
-weather_path= './weather/files/'
+weather_path= './files/weather/'
 
 
 # Get weather information for sandes
@@ -33,6 +33,7 @@ city = weather_today['name']
 for i in air_today['list']:
     quality = i['main']['aqi']
 
+# Create a Dataframe
 df = pd.DataFrame(
     {'tmp': temp, 'wind': windspeed, 'air': quality, 'city': city, 'weather_type': weather_type, 'dato': date().get_now_date()}, index=[0])
 
@@ -52,4 +53,4 @@ lake.initialize_storage_account('janistgac', lake.storage_account_key())
 # file_name = f"results-{dato}.csv"
 
 lake.upload_file(f'sandnes.csv', 'OpenW',
-                  f"./weather/files/sandnes.csv")
+                  f"./files/weather/sandnes.csv")

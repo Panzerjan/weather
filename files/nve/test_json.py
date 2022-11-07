@@ -1,4 +1,3 @@
-
 from functions import keyVault
 import pyodbc
 import pandas as pd
@@ -13,40 +12,15 @@ password = keyVault.KeyVault().getSecret('SqlPwd')
 cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';ENCRYPT=yes;UID='+username+';PWD='+ password)
 cursor = cnxn.cursor()
 
-
-#Sample select query
-# data = pd.read_csv (r'./files/weather/sandnes.csv')
-# df = pd.DataFrame(data)
+df = pd.read_json('./files/nve/his_files/HentOffentligDataSisteUke_2022-11-05.json')
 
 
-# cursor.execute('truncate table weather')
-
-
-
-# for row in df.itertuples():
-#     cursor.execute('''
-#                 INSERT INTO weather (temp, windspeed, air_quality, city, weather_type, dato)
-#                 VALUES (?,?,?,?,?,?)
-#                 ''',
-#                 row.tmp,
-#                 row.wind,
-#                 row.air,
-#                 row.city,
-#                 row.weather_type,
-#                 row.dato
-#                 )
-# cnxn.commit()
-
-
-df2 = pd.read_json('./files/nve/his_files/HentOffentligDataSisteUke_2022-10-10.json')
-
-
-for row in df2.itertuples():
+for row in df.itertuples():
     cursor.execute('''
-                INSERT INTO vannmagasin(dato_id , omrType, omrnr, iso_aar, iso_uke, fyllingsgrad, kapasitet_TWh, fylling_TWh, neste_Publiseringsdato, fyllingsgrad_forrige_uke,endring_fyllingsgrad)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?)
+                INSERT INTO vannmagasin(dato_id , omrType, omrnr, iso_aar, iso_uke, fyllingsgrad,kapasitet_TWh,fylling_TWh,neste_Publiseringsdato,fyllingsgrad_forrige_uke,endring_fyllingsgrad)
+                VALUES (?,?,?,?,?,?)
                 ''',
-                row.dato_Id,
+                row.dato_id,
                 row.omrType,
                 row.omrnr,
                 row.iso_aar,
