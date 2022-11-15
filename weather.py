@@ -4,14 +4,16 @@ from importlib.metadata import files
 from common import lake, files, date
 from common.api import get_api
 import pandas as pd
-from common import keyVault
+from common.keyvault import secrets
+from common.server import sql
 
 
-
+# Connect to sql server
+connect = sql.Database()
 
 # set variables
-url_weather= keyVault.KeyVault().getSecret('urlWeather')
-url_air = keyVault.KeyVault().getSecret('urlAir')
+url_weather= secrets.KeyVault().getSecret('urlWeather')
+url_air = secrets.KeyVault().getSecret('urlAir')
 weather_path= './files/weather/'
 
 
@@ -37,20 +39,21 @@ for i in air_today['list']:
 df = pd.DataFrame(
     {'tmp': temp, 'wind': windspeed, 'air': quality, 'city': city, 'weather_type': weather_type, 'dato': date().get_now_date()}, index=[0])
 
+
+#Insert Datafram into sql server
+connect.InsertDf(df, 'weather')
+
 # Create file names
 file_weather = files().set_filename('sandnes', "csv")
 
+# Append df to CSV file
 df.to_csv(f'{weather_path}{file_weather}', mode='a', header=False)
 print(f'{file_weather} is written to {weather_path}')
 
-# from functions import config
 
 # # Connect to lake
 lake.initialize_storage_account('janistgac', lake.storage_account_key())
 
-# now = datetime.now()
-# dato = now.strftime("%m-%d-%Y")
-# file_name = f"results-{dato}.csv"
-
+# Upload the file to lake
 lake.upload_file(f'sandnes.csv', 'OpenW',
                   f"./files/weather/sandnes.csv")
