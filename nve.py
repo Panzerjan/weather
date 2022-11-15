@@ -4,10 +4,10 @@ import json
 
 from common import lake, files, date
 from common.api import get_api
-from common import keyVault
+from common.keyvault import secrets
 
 # set variables
-nve_url = keyVault.KeyVault().getSecret('urlNve')
+nve_url = secrets.KeyVault().getSecret('urlNve')
 nve_sisteuke = "HentOffentligDataSisteUke"
 omraade = "HentOmråder"
 his_path = './files/nve/his_files'

@@ -1,11 +1,13 @@
 import urllib.request as r
 import sys
+import pandas as pd
+from common.server import sql
 
 sys.path.append( './functions/' )
-from keyVault import KeyVault
+from common.keyvault import secrets
 
 # set variables
-url_global= KeyVault().getSecret('urlGobalTemp')
+url_global= secrets.KeyVault().getSecret('urlGobalTemp')
 
 # Read the date from Gobal temp
 response = r.urlopen(
@@ -14,12 +16,12 @@ data = response.read()
 
 
 # Write data to file
-filename = "./global_temp/file/global.txt"
+filename = "./files/global_temp/global.txt"
 file_ = open(filename, 'wb')
 file_.write(data)
 
 # Removes the last 12 lines
-with open(r"./global_temp/file/global.txt", 'r+') as fp:
+with open(r"./files/global_temp/global.txt", 'r+') as fp:
     # read an store all lines into list
     lines = fp.readlines()
     # move file pointer to the beginning of a file
@@ -31,3 +33,14 @@ with open(r"./global_temp/file/global.txt", 'r+') as fp:
     # lines[:-1] from line 0 to the second last line
     fp.writelines(lines[:-12])
 
+# Create a datafram
+data = pd.read_csv(filename, delimiter="\s+", header=0)
+# convert just columns "Year" and "Mo" to string
+data[["Year", "Mo"]] = data[["Year", "Mo"]].astype(str)
+
+# Connect to sql server
+connect = sql.Database()
+#Truncate table
+connect.truncate_table('global')
+#Insert Data
+connect.InsertDf(data, 'global')

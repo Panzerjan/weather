@@ -2,4 +2,4 @@
 from .lake import  lake
 from .dato import date
 from .files import files
-from .keyVault import KeyVault
+from .keyvault.secrets import KeyVault
