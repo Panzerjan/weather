@@ -1,7 +1,7 @@
 # import modules
 
 from importlib.metadata import files
-from common import lake, files, date
+from common import lake, files, Dato
 from common.api import get_api
 import pandas as pd
 from common.keyvault import secrets
@@ -37,7 +37,7 @@ for i in air_today['list']:
 
 # Create a Dataframe
 df = pd.DataFrame(
-    {'tmp': temp, 'wind': windspeed, 'air': quality, 'city': city, 'weather_type': weather_type, 'dato': date().get_now_date()}, index=[0])
+    {'tmp': temp, 'wind': windspeed, 'air': quality, 'city': city, 'weather_type': weather_type, 'dato': Dato().get_now_date()}, index=[0])
 
 
 #Insert Datafram into sql server

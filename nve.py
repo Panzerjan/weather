@@ -2,7 +2,7 @@
 import pandas as pd
 import json
 
-from common import lake, files, date
+from common import lake, files, Dato
 from common.api import get_api
 from common.keyvault import secrets
 
@@ -18,9 +18,14 @@ nve = get_api.api(f'{nve_url}')
 nve_uke = nve.get_nve(f'{nve_sisteuke}')
 
 # set Filename
-dato = date().get_date()
+dato = Dato()
+dato2 = dato.get_date()
 
-file = files().set_filename(f'{nve_sisteuke}_{dato}', "json")
+file = files().set_filename(f'{nve_sisteuke}_{dato2}', "json")
+
+#Delete files older then a month
+
+files.remove_old_files(his_path, 30)
 
 
 with open(f'{new_path}{file}', 'w', encoding='utf-8') as f:
@@ -38,3 +43,4 @@ lake.upload_file(f'{file}', 'nve',
 
 #move file to historical folder
 files.move_file(new_path, his_path, file)
+
