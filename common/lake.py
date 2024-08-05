@@ -1,18 +1,15 @@
 
 from azure.storage.filedatalake import DataLakeServiceClient
-import configparser
+from common.keyvault import secrets
 
 class lake():
 
     def __init__(self, path):
         self.path = path
 
-
     def storage_account_key():
-        config = configparser.ConfigParser()
-        config.read('./common/config.ini')
-        return config['lakekey']['key']
-
+        key =secrets.KeyVault().getSecret('lakekey')
+        return key
 
     def initialize_storage_account(storage_account_name, storage_account_key):
 
