@@ -15,7 +15,7 @@ test = sql.Database()
 # test.truncate_table('global')
 # test.InsertDf(data, 'global')
 
-file2 = './files/nve/his_files/HentOffentligDataSisteUke_2022-12-10.json'
+file2 = './files/nve/his_files/HentOffentligDataSisteUke_2024-02-18.json'
 
 test.InsertJsonData(file2,'vannmagasin')
 

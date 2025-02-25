@@ -32,12 +32,8 @@ with open(f'{new_path}{file}', 'w', encoding='utf-8') as f:
     json.dump(nve_uke, f, ensure_ascii=False, indent=4)
 
 
-
 # Initialize Lake Storage
 Lake.initialize_storage_account('janistgac')
-
-
-
 
 # Upload file to lake
 Lake.upload_file(f'{file}', 'nve',
